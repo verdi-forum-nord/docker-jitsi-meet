@@ -1,0 +1,3 @@
+[submodule "prom-exporter"]
+	path = prom-exporter
+	url = https://github.com/verdi-forum-nord/jitsi-prom-exporter.git

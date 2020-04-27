@@ -162,6 +162,24 @@ services:
             - prosody
         networks:
             meet.jitsi:
+    
+    prom-exporter:
+        image: jitsi-prom-exporter
+        build: ./prom-exporter
+        restart: ${RESTART_POLICY}
+        ports:
+            - '${PROMEXP_HOST_ADDRESS}:${PROMEXP_PORT}:8080'
+        environment:
+            - XMPP_AUTH_DOMAIN
+            - XMPP_INTERNAL_MUC_DOMAIN
+            - XMPP_SERVER
+            - JVB_BREWERY_MUC
+            - PROMEXP_AUTH_USER
+            - PROMEXP_AUTH_PASSWORD
+        depends_on:
+            - prosody
+        networks:
+            - meet.jitsi
 
 # Custom network so all services can communicate using a FQDN
 networks:
